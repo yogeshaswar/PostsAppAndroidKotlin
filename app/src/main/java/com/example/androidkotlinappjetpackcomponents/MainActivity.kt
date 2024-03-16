@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val apiService = RetrofitHelper.getRetrofitInstance().create(ApiService::class.java)
-        repository = PostRepository(apiService)
+        repository = (application as App).postRepository
         postViewModel = ViewModelProvider(this, PostViewModelFactory(repository)).get(PostViewModel::class.java)
 
         postViewModel.posts.observe(this, Observer { posts: Posts ->
