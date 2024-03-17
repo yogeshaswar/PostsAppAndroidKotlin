@@ -14,19 +14,12 @@ import com.example.androidkotlinappjetpackcomponents.viewmodels.PostViewModelFac
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var postViewModel: PostViewModel
-    lateinit var repository: PostRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        repository = (application as App).postRepository
-        postViewModel = ViewModelProvider(this, PostViewModelFactory(repository)).get(PostViewModel::class.java)
 
-        postViewModel.posts.observe(this, Observer { posts: Posts ->
-            Log.d("TAG", "ApiResponse: ${posts.get(0)}")
-        })
 
     }
 }
