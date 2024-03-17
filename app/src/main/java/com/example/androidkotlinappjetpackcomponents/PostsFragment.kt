@@ -22,13 +22,11 @@ class PostsFragment : Fragment() {
     lateinit var repository: PostRepository
     lateinit var rvPosts: RecyclerView
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_posts, container, false)
-
 
         // Inflate the layout for this fragment
         repository = (requireActivity().application as App).postRepository
@@ -37,13 +35,10 @@ class PostsFragment : Fragment() {
         rvPosts = view.findViewById<RecyclerView>(R.id.rv_posts)
         rvPosts.layoutManager = LinearLayoutManager(context)
 
-
         postViewModel.posts.observe(this.viewLifecycleOwner, Observer { posts: Posts ->
             // TODO Add Recycler View
             rvPosts.adapter = PostAdapter(posts)
         })
-
-
         return view
     }
 
